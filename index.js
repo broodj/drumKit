@@ -9,26 +9,50 @@ var tomTwo = new Audio('sounds/tom-2.mp3');
 var tomThree = new Audio('sounds/tom-3.mp3');
 var tomFour = new Audio('sounds/tom-4.mp3');
 
+function drumsInTheDeep(){
+  var drums = document.querySelectorAll('.drum');
 
-//Add event listeners to all buttons
-for (var i = 0; i < numberOfDrumButtons; i++){
-  document.querySelectorAll('.drum')[i].addEventListener('click', function(){
-
-    //If the button pressed contains X class name, play relevant sound
-    if (this.classList.contains('w')){
-      crash.play();
-    } else if (this.classList.contains('a')){
-      kickBass.play();
-    } else if (this.classList.contains('s')){
-      snare.play();
-    } else if (this.classList.contains('d')){
-      tomOne.play();
-    } else if (this.classList.contains('j')){
-      tomTwo.play();
-    } else if (this.classList.contains('k')){
-      tomThree.play();
-    } else if (this.classList.contains('l')){
-      tomFour.play();
-    }
-  });
+  for (i = 0; i < numberOfDrumButtons; i++ ){
+    drums[i].addEventListener('click', drumClicked);
+  }
 }
+
+function drumClicked(){
+  var classList = this.classList;
+
+  switch (true){
+    case classList.contains('w'):
+      crash.play();
+      break;
+
+    case classList.contains('a'):
+      kickBass.play();
+      break;
+
+    case classList.contains('s'):
+      snare.play();
+      break;
+
+    case classList.contains('d'):
+      tomOne.play();
+      break;
+
+    case classList.contains('j'):
+      tomTwo.play();
+      break;
+
+    case classList.contains('k'):
+      tomThree.play();
+      break;
+
+    case classList.contains('l'):
+      tomFour.play();
+      break;
+
+    default:
+      alert('Incorrect drum click, try again');
+  }
+}
+
+
+drumsInTheDeep();
