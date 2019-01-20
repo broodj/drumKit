@@ -16,44 +16,6 @@ function drumsInTheDeep(){
     drums[i].addEventListener('click', drumClicked);
   }
 }
-
-//initiate click event listeners
-drumsInTheDeep();
-
-//initiate and create keyboard event listeners
-document.addEventListener('keyup', function (event) {
-  switch(event.keyCode) {
-      case 87:
-          // w key pressed
-          crash.play();
-          break;
-      case 65:
-          // a key pressed
-          kickBass.play();
-          break;
-      case 83:
-          // s key pressed
-          snare.play();
-          break;
-      case 68:
-          // d key pressed
-          tomOne.play();
-          break;
-      case 74:
-          // j key pressed
-          tomTwo.play();
-          break;
-      case 75:
-          //k key pressed
-          tomThree.play();
-          break;
-      case 76:
-          //l key pressed
-          tomFour.play();
-          break;
-  }
-});
-
 //When drum button is clicked, relevant sound plays
 function drumClicked(){
   var classList = this.classList;
@@ -89,5 +51,44 @@ function drumClicked(){
 
     default:
       alert('Incorrect drum click, try again');
+  }
+}
+//initiate click event listeners
+drumsInTheDeep();
+
+//add keyboard event listener
+document.addEventListener('keyup', keyboardPress);
+
+//detect keyboard input
+function keyboardPress(event){
+  switch(event.keyCode) {
+      case 87:
+          // w key pressed
+          crash.play();
+          break;
+      case 65:
+          // a key pressed
+          kickBass.play();
+          break;
+      case 83:
+          // s key pressed
+          snare.play();
+          break;
+      case 68:
+          // d key pressed
+          tomOne.play();
+          break;
+      case 74:
+          // j key pressed
+          tomTwo.play();
+          break;
+      case 75:
+          //k key pressed
+          tomThree.play();
+          break;
+      case 76:
+          //l key pressed
+          tomFour.play();
+          break;
   }
 }
