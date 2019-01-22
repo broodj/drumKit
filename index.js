@@ -7,88 +7,56 @@ var tomTwo = new Audio('sounds/tom-2.mp3');
 var tomThree = new Audio('sounds/tom-3.mp3');
 var tomFour = new Audio('sounds/tom-4.mp3');
 
-var drums = document.querySelectorAll('.drum');
 var numberOfDrumButtons = document.querySelectorAll('.drum').length;
 
-//add event listeners to all drum buttons for mouseclicks
-function drumsInTheDeep(){
-  for (i = 0; i < numberOfDrumButtons; i++ ){
-    drums[i].addEventListener('click', drumClicked);
-  }
+//add mouse event listeners
+for (var i = 0; i < numberOfDrumButtons; i++){
+  document.querySelectorAll('.drum')[i].addEventListener('click', function(){
+    //find the button pressed
+    var buttonInnerHTML = this.innerHTML;
+    //run the playSound function on the identified button
+    playSound(buttonInnerHTML);
+  });
 }
-//When drum button is clicked, relevant sound plays
-function drumClicked(){
-  var classList = this.classList;
 
-  switch (true){
-    case classList.contains('w'):
-      crash.play();
-      break;
+//add keyboard event listeners
+document.addEventListener('keypress', function(event){
+  //play sound of key pressed
+  playSound(event.key);
+});
 
-    case classList.contains('a'):
-      kickBass.play();
-      break;
+function playSound(key){
+  switch (key) {
 
-    case classList.contains('s'):
-      snare.play();
-      break;
-
-    case classList.contains('d'):
+    case "w":
       tomOne.play();
       break;
 
-    case classList.contains('j'):
+    case "a":
       tomTwo.play();
       break;
 
-    case classList.contains('k'):
+    case "s":
       tomThree.play();
       break;
 
-    case classList.contains('l'):
+    case "d":
       tomFour.play();
       break;
 
+    case "j":
+      crash.play();
+      break;
+
+    case "k":
+      kickBass.play();
+      break;
+
+    case "l":
+      snare.play();
+      break;
+
     default:
-      alert('Incorrect drum click, try again');
-  }
-}
-//initiate click event listeners
-drumsInTheDeep();
-
-//add keyboard event listener
-document.addEventListener('keyup', keyboardPress);
-
-//detect keyboard input
-function keyboardPress(event){
-  switch(event.keyCode) {
-      case 87:
-          // w key pressed
-          crash.play();
-          break;
-      case 65:
-          // a key pressed
-          kickBass.play();
-          break;
-      case 83:
-          // s key pressed
-          snare.play();
-          break;
-      case 68:
-          // d key pressed
-          tomOne.play();
-          break;
-      case 74:
-          // j key pressed
-          tomTwo.play();
-          break;
-      case 75:
-          //k key pressed
-          tomThree.play();
-          break;
-      case 76:
-          //l key pressed
-          tomFour.play();
-          break;
+      alert('fail');
   }
 }
