@@ -16,6 +16,7 @@ for (var i = 0; i < numberOfDrumButtons; i++){
     var buttonInnerHTML = this.innerHTML;
     //run the playSound function on the identified button
     playSound(buttonInnerHTML);
+    buttonAnimation(buttonInnerHTML);
   });
 }
 
@@ -23,6 +24,7 @@ for (var i = 0; i < numberOfDrumButtons; i++){
 document.addEventListener('keypress', function(event){
   //play sound of key pressed
   playSound(event.key);
+  buttonAnimation(event.key);
 });
 
 function playSound(key){
@@ -57,6 +59,17 @@ function playSound(key){
       break;
 
     default:
-      alert('fail');
+      alert('Use WASD JKL keys to play the drums');
   }
+}
+
+function buttonAnimation(currentKey){
+  var activeButton = document.querySelector('.' + currentKey);
+
+  activeButton.classList.add('pressed');
+
+  setTimeout(function(){
+    activeButton.classList.remove('pressed');
+  }, 100);
+
 }
